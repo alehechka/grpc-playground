@@ -36,7 +36,7 @@ const (
 )
 
 var (
-	addr    = flag.String("addr", "localhost:50051", "the address to connect to")
+	addr    = flag.String("addr", "localhost:80", "the address to connect to")
 	name    = flag.String("name", defaultName, "Name to greet")
 	age     = flag.Int64("age", defaultAge, "Age of person")
 	isLegal = flag.Bool("isLegal", false, "Is person legal")
