@@ -8,7 +8,7 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
-	gw "github.com/alehechka/grpc-playground/go-server/grpc"
+	gw "github.com/alehechka/grpc-playground/go-server/grpc/helloworld"
 	"github.com/alehechka/grpc-playground/go-server/utils"
 )
 

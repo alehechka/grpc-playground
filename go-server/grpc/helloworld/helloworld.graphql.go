@@ -11,14 +11,14 @@ import (
 )
 
 var (
-	gql__type_HelloRequest    *graphql.Object      // message HelloRequest in go-server/grpc/helloworld.proto
-	gql__type_HelloReply      *graphql.Object      // message HelloReply in go-server/grpc/helloworld.proto
-	gql__type_GoodbyeRequest  *graphql.Object      // message GoodbyeRequest in go-server/grpc/helloworld.proto
-	gql__type_GoodbyeReply    *graphql.Object      // message GoodbyeReply in go-server/grpc/helloworld.proto
-	gql__input_HelloRequest   *graphql.InputObject // message HelloRequest in go-server/grpc/helloworld.proto
-	gql__input_HelloReply     *graphql.InputObject // message HelloReply in go-server/grpc/helloworld.proto
-	gql__input_GoodbyeRequest *graphql.InputObject // message GoodbyeRequest in go-server/grpc/helloworld.proto
-	gql__input_GoodbyeReply   *graphql.InputObject // message GoodbyeReply in go-server/grpc/helloworld.proto
+	gql__type_HelloRequest    *graphql.Object      // message HelloRequest in go-server/grpc/helloworld/helloworld.proto
+	gql__type_HelloReply      *graphql.Object      // message HelloReply in go-server/grpc/helloworld/helloworld.proto
+	gql__type_GoodbyeRequest  *graphql.Object      // message GoodbyeRequest in go-server/grpc/helloworld/helloworld.proto
+	gql__type_GoodbyeReply    *graphql.Object      // message GoodbyeReply in go-server/grpc/helloworld/helloworld.proto
+	gql__input_HelloRequest   *graphql.InputObject // message HelloRequest in go-server/grpc/helloworld/helloworld.proto
+	gql__input_HelloReply     *graphql.InputObject // message HelloReply in go-server/grpc/helloworld/helloworld.proto
+	gql__input_GoodbyeRequest *graphql.InputObject // message GoodbyeRequest in go-server/grpc/helloworld/helloworld.proto
+	gql__input_GoodbyeReply   *graphql.InputObject // message GoodbyeReply in go-server/grpc/helloworld/helloworld.proto
 )
 
 func Gql__type_HelloRequest() *graphql.Object {

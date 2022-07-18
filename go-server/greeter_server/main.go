@@ -26,7 +26,7 @@ import (
 	"net"
 	"os"
 
-	pb "github.com/alehechka/grpc-playground/go-server/grpc"
+	pb "github.com/alehechka/grpc-playground/go-server/grpc/helloworld"
 	"github.com/alehechka/grpc-playground/go-server/utils"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"

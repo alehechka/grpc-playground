@@ -3,7 +3,7 @@ syntax = "proto3";
 
 import "go-server/grpc/graphql.proto";
 
-option go_package = "/helloworld";
+option go_package = "./;helloworld";
 
 package helloworld;
 

@@ -1,7 +1,7 @@
 package main
 
 import (
-	greeter "github.com/alehechka/grpc-playground/go-server/grpc"
+	greeter "github.com/alehechka/grpc-playground/go-server/grpc/helloworld"
 	"github.com/alehechka/grpc-playground/go-server/utils"
 	"github.com/friendsofgo/graphiql"
 	"github.com/gin-gonic/gin"
