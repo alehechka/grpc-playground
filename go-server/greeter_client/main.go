@@ -25,7 +25,7 @@ import (
 	"log"
 	"time"
 
-	pb "github.com/alehechka/grpc-playground/helloworld"
+	pb "github.com/alehechka/grpc-playground/go-server/grpc"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 )
@@ -36,10 +36,10 @@ const (
 )
 
 var (
-	addr    = flag.String("addr", "localhost:80", "the address to connect to")
-	name    = flag.String("name", defaultName, "Name to greet")
-	age     = flag.Int64("age", defaultAge, "Age of person")
-	isLegal = flag.Bool("isLegal", false, "Is person legal")
+	addr   = flag.String("addr", "localhost:80", "the address to connect to")
+	name   = flag.String("name", defaultName, "Name to greet")
+	age    = flag.Int64("age", defaultAge, "Age of person")
+	status = flag.Bool("status", false, "Person's personhood status")
 )
 
 func main() {
@@ -56,17 +56,11 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 
-	request := &pb.HelloRequest{Name: *name, Age: *age, IsLegal: *isLegal}
+	request := &pb.HelloRequest{Name: *name, Age: *age, Status: *status}
 
 	r, err := c.SayHello(ctx, request)
 	if err != nil {
 		log.Fatalf("could not greet: %v", err)
 	}
 	log.Printf("Greeting: %s", r.GetMessage())
-
-	r, err = c.SayHelloAgain(ctx, request)
-	if err != nil {
-		log.Fatalf("could not greet: %v", err)
-	}
-	log.Printf("Greeting: %s", r.String())
 }

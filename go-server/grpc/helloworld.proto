@@ -1,0 +1,54 @@
+
+syntax = "proto3";
+
+import "go-server/grpc/graphql.proto";
+
+option go_package = "/helloworld";
+
+package helloworld;
+
+// The greeting service definition.
+service Greeter {
+    option (graphql.service) = {
+      host: "localhost:80"
+      insecure: true
+    };
+
+    // Sends a greeting
+    rpc SayHello (HelloRequest) returns (HelloReply) {
+      // Here is plugin definition
+      option (graphql.schema) = {
+        type: QUERY   // declare as Query
+        name: "hello" // query name
+      };
+    }
+    
+    // Sends a salutation
+    rpc SayGoodbye (GoodbyeRequest) returns (GoodbyeReply) {
+      // Here is plugin definition
+      option (graphql.schema) = {
+        type: QUERY     // declare as Query
+        name: "goodbye" // query name
+      };
+    }
+  }
+  
+  // The request message containing the user's name.
+  message HelloRequest {
+    string name = 1 [(graphql.field) = {required: true}];
+    int64 age = 2 [(graphql.field) = {required: false}];
+    bool status = 3 [(graphql.field) = {required: false}];
+  }
+  
+  // The response message containing the greetings
+  message HelloReply {
+    string message = 1;
+  }
+
+  message GoodbyeRequest {
+    string name = 1 [(graphql.field) = {required: true}];
+  }
+  
+  message GoodbyeReply {
+    string message = 1;
+  }

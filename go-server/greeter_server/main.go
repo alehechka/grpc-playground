@@ -21,17 +21,19 @@ package main
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"log"
 	"net"
 	"os"
 
-	pb "github.com/alehechka/grpc-playground/helloworld"
+	pb "github.com/alehechka/grpc-playground/go-server/grpc"
+	"github.com/alehechka/grpc-playground/go-server/utils"
 	"google.golang.org/grpc"
 )
 
 var (
-	port = getEnv("PORT", "80")
+	port = utils.GetEnv("PORT", "80")
 )
 
 // server is used to implement helloworld.GreeterServer.
@@ -41,12 +43,16 @@ type server struct {
 
 // SayHello implements helloworld.GreeterServer
 func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
-	log.Printf("Received: %#v", in)
-	return &pb.HelloReply{Message: fmt.Sprintf("Hello %s, you are %d years old and your legal status is: %t", in.GetName(), in.GetAge(), in.GetIsLegal())}, nil
+	log.Printf("SayHello: %#v", in)
+	if len(in.GetName()) == 0 {
+		return nil, errors.New("no name provided")
+	}
+	return &pb.HelloReply{Message: fmt.Sprintf("Hello %s, you are %d years old and your personhood status is: %t", in.GetName(), in.GetAge(), in.GetStatus())}, nil
 }
 
-func (s *server) SayHelloAgain(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
-	return &pb.HelloReply{Message: "Hello again " + in.GetName()}, nil
+func (s *server) SayGoodbye(ctx context.Context, in *pb.GoodbyeRequest) (*pb.GoodbyeReply, error) {
+	log.Printf("SayGoodbye: %#v", in)
+	return &pb.GoodbyeReply{Message: "Goodbye " + in.GetName()}, nil
 }
 
 func main() {
