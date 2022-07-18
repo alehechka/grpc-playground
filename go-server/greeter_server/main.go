@@ -21,7 +21,6 @@ package main
 
 import (
 	"context"
-	"errors"
 	"fmt"
 	"log"
 	"net"
@@ -30,6 +29,8 @@ import (
 	pb "github.com/alehechka/grpc-playground/go-server/grpc"
 	"github.com/alehechka/grpc-playground/go-server/utils"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 )
 
 var (
@@ -45,7 +46,7 @@ type server struct {
 func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
 	log.Printf("SayHello: %#v", in)
 	if len(in.GetName()) == 0 {
-		return nil, errors.New("no name provided")
+		return nil, status.Errorf(codes.InvalidArgument, "name not provided")
 	}
 	return &pb.HelloReply{Message: fmt.Sprintf("Hello %s, you are %d years old and your personhood status is: %t", in.GetName(), in.GetAge(), in.GetStatus())}, nil
 }
